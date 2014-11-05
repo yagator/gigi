@@ -67,7 +67,7 @@ class Model_Generator {
         return \$this->" . $obj_name . ";
     }
     
-    public function setEntity" . ucfirst($obj_name) . " ($" . $obj_name . "){
+    public function setEntity" . ucfirst($obj_name) . " (" . ucfirst($obj_name) ." $" . $obj_name . "){
         \$this->" . $obj_name . " = $" . $obj_name . ";
     }
 ";
