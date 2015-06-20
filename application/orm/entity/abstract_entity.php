@@ -1,6 +1,7 @@
 <?php
+namespace ORM\Entity;
 
-abstract class AbstractEntity {
+abstract class Abstract {
     
     protected $id;
     protected $db_table_name;

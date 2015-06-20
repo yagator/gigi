@@ -1,4 +1,5 @@
 <?php
+namespace ORM;
 
 class Connection {
     

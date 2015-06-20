@@ -1,8 +1,9 @@
 <?php
+namespace ORM\DAO;
 include_once ($APPLICATION_PATH . "orm/connection.php");
 include_once ($APPLICATION_PATH . "orm/entity/abstract_entity.php");
 
-abstract class AbstractDao {
+abstract class Abstract {
     
     protected $db_table;
     protected $connection;
