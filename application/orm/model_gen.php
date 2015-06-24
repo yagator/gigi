@@ -36,7 +36,7 @@ class Model_Generator {
  *
  * @author @yagator
  */
- class " . $this->c_name($table) . " extends Abstract {\n";
+ class " . $this->c_name($table) . " extends ORM\\Entity {\n";
             $cad .= "
     function __construct() {
         parent::__construct('" . $table . "');
@@ -97,7 +97,7 @@ class Model_Generator {
             $cad = "<?php
 namespace ORM\\DAO;
 
-include_once (\$APPLICATION_PATH . 'orm/dao/abstract_dao.php');
+include_once (\$APPLICATION_PATH . 'orm/dao/abstract.php');
 include (\$APPLICATION_PATH . 'orm/entity/$table.php');
 
 /**
@@ -106,7 +106,7 @@ include (\$APPLICATION_PATH . 'orm/entity/$table.php');
  *
  * @author @yagator
  */
-class " . $this->c_name($table) . "_Dao extends Abstract {
+class " . $this->c_name($table) . " extends ORM\\DAO {
 
     function __construct() {
         parent::__construct(new " . $this->c_name($table) . "());
