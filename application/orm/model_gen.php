@@ -50,27 +50,27 @@ class Model_Generator {
                     $cad .= "
     private $" . $column . ";
     
-    public function get" . ucfirst($column) . "() {
+    public function get" . $this->cname($column) . "() {
         return \$this->" . $column . ";
     }
 
-    public function set" . ucfirst($column) . "($" . $column . ") {
+    public function set" . $this->cname($column) . "($" . $column . ") {
         \$this->" . $column . " = $" . $column . ";
         return \$this;
     }
 ";
                     //if current column is a foreign key:
-                    $pos = strpos($column, "id_");
+                    $pos = strpos($column, "_id");
                     if ($pos !== FALSE){
-                        $obj_name = substr($column, 3);
+                        $obj_name = substr($column, 0, $pos);
                         $cad .= "
     private $" . $obj_name . ";
     
-    public function getEntity" . ucfirst($obj_name) . " (){
+    public function getEntity" . $this->cname($obj_name) . " (){
         return \$this->" . $obj_name . ";
     }
     
-    public function setEntity" . ucfirst($obj_name) . " (" . ucfirst($obj_name) ." $" . $obj_name . "){
+    public function setEntity" . $this->cname($obj_name) . " (" . $this->cname($obj_name) ." $" . $obj_name . "){
         \$this->" . $obj_name . " = $" . $obj_name . ";
     }
 ";
@@ -91,7 +91,7 @@ class Model_Generator {
     public function daos(){
         $tables = $this->getTables();
         foreach ($tables as $table){
-            $filename = $table . "_dao.php";
+            $filename = $table . ".php";
             echo "file: " . $this->dao_path . $filename;
             echo "<br>";
             $cad = "<?php
@@ -164,5 +164,13 @@ class " . $this->c_name($table) . " extends ORM\\DAO {
             $a[$k] = ucfirst($v);
         }
         return implode("_", $a);
+    }
+    
+    private function cname($c){
+        $a = explode("_", $c);
+        foreach ($a as $k=>$v){
+            $a[$k] = ucfirst($v);
+        }
+        return implode("", $a);
     }
 }

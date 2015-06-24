@@ -20,7 +20,7 @@ class Connection {
     
     public function open(){
         $this->connection = new mysqli(
-            connection::$HOST, connection::$USER, connection::$PASSWORD, connection::$SCHEMA
+            Connection::$HOST, Connection::$USER, Connection::$PASSWORD, Connection::$SCHEMA
         );
         
         if ($this->connection->connect_error){
